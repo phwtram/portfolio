@@ -60,15 +60,7 @@ export default function About() {
                 color: "border-slate-200 bg-white",
                 accent: "text-slate-400",
               },
-              {
-                label: "Where I'm headed",
-                title: "Graduate Studies",
-                sub: "Abroad · 2025",
-                note: "Deepening knowledge at the intersection of technology and strategy",
-                icon: "◈",
-                color: "border-teal-100 bg-teal-50/60",
-                accent: "text-teal-500",
-              },
+             
               {
                 label: "What drives me",
                 title: "Building something meaningful",
