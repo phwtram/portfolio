@@ -22,7 +22,7 @@ const ITEMS: TimelineItem[] = [
     title: "Bachelor of Software Engineering",
     org: "FPT University",
     type: "education",
-    tags: ["GPA 7.25/10", "IELTS 6.0", "Capstone Project"],
+    tags: ["Capstone Project"],
     description:
       "Studied software engineering fundamentals, full-stack development, database design, software testing, and project management. Graduated with a Capstone Project in blockchain-integrated agricultural technology.",
   },
