@@ -49,13 +49,7 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="/cv.pdf"
-            download
-            className="ml-2 px-4 py-1.5 border border-teal-500/50 hover:border-teal-400 text-teal-400 hover:text-teal-300 text-sm font-mono rounded-md transition-all duration-200"
-          >
-            CV ↓
-          </a>
+          
         </div>
 
         {/* Mobile hamburger */}
@@ -87,14 +81,7 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="/cv.pdf"
-            download
-            className="text-teal-400 text-sm font-mono"
-            onClick={() => setOpen(false)}
-          >
-            Download CV ↓
-          </a>
+        
         </div>
       )}
     </header>
