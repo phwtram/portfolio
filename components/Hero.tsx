@@ -1,9 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ROLES = ["Software Developer", "Frontend Developer", "QA Engineer"];
+const CV_OPTIONS = [
+  { label: "Manual Tester", file: "/Nguyen_Binh_Phuong_Tram_Resume.pdf" },
+  { label: "QA Engineer", file: "/Nguyen_Binh_Phuong_Tram_QA.pdf" },
+];
+function CVDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="px-6 py-3 border border-slate-600 hover:border-teal-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm flex items-center gap-2"
+      >
+        Download CV
+        <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute left-0 mt-2 w-48 bg-[#131E2E] border border-slate-700 rounded-lg overflow-hidden shadow-xl z-50">
+          {CV_OPTIONS.map((opt) => (
+            <a key={opt.file} href={opt.file} download onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-4 py-3 text-sm text-slate-300 hover:text-teal-400 hover:bg-slate-800/60 transition-colors">
+              ↓ {opt.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 function TypingText() {
   const [text, setText] = useState("");
   const [idx, setIdx] = useState(0);
@@ -108,13 +150,7 @@ export default function Hero() {
             >
               View Projects
             </a>
-            <a
-              href="\CV - NGUYEN BINH PHUONG TRAM.pdf"
-              download
-              className="px-6 py-3 border border-slate-600 hover:border-teal-500 text-slate-300 hover:text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm"
-            >
-              Download CV
-            </a>
+            <CVDropdown />
           </div>
 
           <div
@@ -129,12 +165,14 @@ export default function Hero() {
             >
               github/phwtram ↗
             </a>
-            <a
-              href="mailto:tramnguyen20803@gmail.com"
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText("tramnguyen20803@gmail.com");
+              }}
               className="text-slate-500 hover:text-teal-400 transition-colors text-sm font-mono"
             >
               Email ↗
-            </a>
+            </button>
           </div>
         </div>
 
